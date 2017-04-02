@@ -1,0 +1,22 @@
+<%= link_to "Return to all Classrooms", classrooms_path%>
+<%= link_to "Return to #{@student.classroom.teacher}'s' enitre class", classroom_path(@student.classroom) %>
+
+<h1>Name: <%= @student.name %></h1>
+<h4>Teacher: <%= @student.classroom.teacher %></h4>
+
+<h3>Behaviors:</h3>
+
+<%= f.label :behavior_id, 'Behavior' %>
+<%= f.collection_select(:behavior_id, Behavior.all, :id, :name, :include_blank => "Other behavior") %>
+
+<%= f.label :date %>
+<%= f.select_date :date %>
+
+<%= f.label :hour %>
+<%= f.collection_select(:hour, Behavior.all, :id, :hour %>
+
+<%= f.label :location %>
+<%= f.text_field :location %>
+
+<%= f.label :comments %>
+<%= f.text_area :comments %>
