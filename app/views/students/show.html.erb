@@ -1,22 +1,54 @@
-<%= link_to "Return to all Classrooms", classrooms_path%>
-<%= link_to "Return to #{@student.classroom.teacher}'s' enitre class", classroom_path(@student.classroom) %>
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <a class="navbar-brand"> <h3 class="text-info">Student Behavior Tracker</h3></a>
+      <ul class="nav navbar-nav navbar-right">
+
+              <h4 class="btn-group"><%= link_to "Return to #{@student.classroom.teacher}'s enitre class", classroom_path(@student.classroom), class: "btn btn-success" %></h4>
+              <h4 class="btn-group"><%= link_to "Return to all Classrooms", classrooms_path, class: "btn btn-success" %></h4>
+
+            </ul>
+  </div>
+</nav><br><br>
+
 
 <h1>Name: <%= @student.name %></h1>
-<h4>Teacher: <%= @student.classroom.teacher %></h4>
+<h4>Teacher: <%= @student.classroom.teacher %></h4><br>
 
-<h3>Behaviors:</h3>
+<% behaviors = @student.student_target_behaviors.map { |tb| @behaviors.find(tb.behavior_id).keyword } %>
+<% descrptions = @student.student_target_behaviors.map { |tb| tb.student_specific_description } %>
 
-<%= f.label :behavior_id, 'Behavior' %>
-<%= f.collection_select(:behavior_id, Behavior.all, :id, :name, :include_blank => "Other behavior") %>
 
-<%= f.label :date %>
-<%= f.select_date :date %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">TARGET BEHAVIOR 1:
+      <% behaviors. each do |behavior| %>
+    <%= behavior %>
+    <% end %></h3>
+  </div>
+  <div class="panel-body">
+    <% descrptions.each do |description| %>
+    <%= description %>
+    <% end %>
+  </div>
+</div>
 
-<%= f.label :hour %>
-<%= f.collection_select(:hour, Behavior.all, :id, :hour %>
 
-<%= f.label :location %>
-<%= f.text_field :location %>
 
-<%= f.label :comments %>
-<%= f.text_area :comments %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">TARGET BEHAVIOR 2</h3>
+  </div>
+  <div class="panel-body">
+    Description of the behavior specific to the student
+  </div>
+</div>
+
+
+
+<h3>Tracked behaviors:</h3>
+
+
+
+<h3>Record behavior:</h3>
