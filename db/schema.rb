@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403203638) do
+ActiveRecord::Schema.define(version: 20170405014246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 20170403203638) do
     t.string  "name"
     t.integer "classroom_id"
     t.index ["classroom_id"], name: "index_students_on_classroom_id", using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "password_confirmation"
   end
 
   add_foreign_key "observations", "behaviors"
