@@ -8,8 +8,8 @@ describe "Visitor sees a specific student" do
     visit classroom_student_path(classroom, student)
 
     expect(page).to have_content("Child")
-    # expect(page).to have_content("Target")
-    # expect(page).to have_content("70")
+    #expect(page).to have_content(target_behaviors of the student...)
+    #expect(page).to have_content(observations log of the student...)
   end
 
 end
