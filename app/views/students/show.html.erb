@@ -14,47 +14,19 @@
 <h1>Name: <%= @student.name %></h1>
 <h4>Teacher: <%= @student.classroom.teacher %></h4><br>
 
-<% target_behaviors = @student.student_target_behaviors.map { |tb| @behaviors.find(tb.behavior_id).keyword } %>
-<% target_behavior_descriptions = @student.student_target_behaviors.map { |tb| tb.student_specific_description } %>
 
 
-
-
-
-
+  <% @student.target_behavior_descriptions_hash.each  do |behavior, description| %>
 <div class='col-md-4'>
-
-<table class="panel panel-info">
-  <tbody>
-    <tr class="panel-heading">
-      <th class="panel-title"> <% target_behaviors.each  do |behavior| %>
-        <%= "TARGET BEHAVIOR: #{behavior}" %>
-      <% end %></th>
-    </tr>
-    <tr class="panel-body">
-    <%= target_behavior_descriptions.each do |description| %>
-
-      <td><%=  description  %></td>
-      <% end  %></tr>
-    <!-- EDIT/DELETE Student -->
-
-  </tbody>
-  </table>
-
-</div>
-
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">TARGET BEHAVIOR 2</h3>
-  </div>
-  <div class="panel-body">
-    Description of the behavior specific to the student
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Target Behavior: <%= behavior.upcase %></h3>
+    </div>
+    <div class="panel-body">
+      <h5>Description for this student:</h5> <p><%= description %></p>
+    </div>
   </div>
 </div>
-
-
-
-
+<% end %>
 
 <h3>Record behavior <%= link_to "New observation", new_classroom_student_observation_path(@classroom, @student), class: "btn btn-warning" %></h3>
