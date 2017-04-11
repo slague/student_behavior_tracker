@@ -10,23 +10,9 @@ root to: 'sessions#new'
   end
 
 
-# resources :classrooms do
-#   resources :students
-# end
-#
-# resources :students do
-#   resources :observations
-# end
-#
-#
-# namespace :students do
-#   resources :observations
-# end
-
-
-
-
+namespace :admin do
   resources :behaviors
+end
 
   resources :users, only: [:new, :create, :show]
 

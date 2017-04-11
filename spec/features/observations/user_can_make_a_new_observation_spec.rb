@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "User can make a new observation" do
+xdescribe "User can make a new observation" do
   scenario "a visitor logs an observation for a student" do
     classroom = Classroom.create!(teacher: "Adult", room: "Room 1")
     student = classroom.students.create!(name: 'Child')
@@ -29,10 +29,5 @@ describe "User can make a new observation" do
     within('.success') do
       expect(page).to have_content("Observation recorded")
     end
-
-    within(#logged behaviors) do
-      # expect(page).to have_content(the new observation)
-    end
   end
-
 end

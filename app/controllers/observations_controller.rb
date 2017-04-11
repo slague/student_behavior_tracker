@@ -1,28 +1,28 @@
 class ObservationsController < ApplicationController
 
   before_action :set_student, only: [:new, :create, :show]
-  before_action :set_classroom, only: [:new, :create, :show]
+  # before_action :set_classroom, only: [:new, :create, :show]
 
   def index
-    @observations = Student.find(params[:id].observations)
+    @observations = @student.find(params[:id].observations)
   end
 
   def new
-    @observation = @student.observation.new()
+    @observation = @student.observations.new()
   end
 
   def create
-    @observation = @student.observation.new(observation_params)
+    @observation = @student.observations.new(observation_params)
     if @observation.save
       flash[:success] = "Observation recorded"
-      redirect_to classroom_student_path(@student)
+      redirect_to classroom_student_path(@classroom, @student)
     else
       render :new
     end
   end
 
   def show
-    redirect_to classroom_student_path(@student)
+    redirect_to classroom_student_path(@classroom, @student)
   end
 
 
@@ -33,12 +33,14 @@ private
   end
 
   def set_student
+    @classroom = Classroom.find(params[:classroom_id])
     @student = @classroom.students.find(params[:student_id])
+    # @student = Student.find(params[:student_id])
   end
 
-  def set_classroom
-    @classroom = Classroom.find(params[:classroom_id])
-  end
+  # def set_classroom
+  #   @classroom = Classroom.find(params[:classroom_id])
+  # end
 
 
 end

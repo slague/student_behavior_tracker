@@ -1,38 +1,66 @@
-<form class="form-horizontal">
-  <fieldset>
-    <legend>Record Observation</legend>
-      <%= form_for (@classroom, @student, @observation) do |f| %>
+
+<div class='col-md-7'>
+  <form class="form-horizontal">
+    <%= form_for ([@classroom, @student, @observation]) do |f| %>
+    <fieldset>
+
       <div class="form-group">
-        <label for="select" class="col-lg-2 control-label"><%= f.label :behavior_id, 'Behavior' %></label>
+        <label class="col-lg-2 control-label"><%= f.label :behavior_id, 'Behavior' %></label>
+        <div class="col-lg-10">
+        <%= f.collection_select(:behavior_id, Behavior.all, :id, :keyword, :include_blank => "Other behavior") %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-2 control-label">  <%= f.label :date %></label>
+        <div class="col-lg-10">
+          <%= f.date_field :date %>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">  <%= f.label :time %></label>
           <div class="col-lg-10">
-              <select class="form-control" id="select"><%= f.collection_select(:behavior_id, Behavior.all, :id, :name, :include_blank => "Other behavior") %>
-              </select>
-            </div>
-          </div>  
+            <%= f.time_field :time %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">  <%= f.label :duration %></label>
+          <div class="col-lg-10">
+            <%= f.text_field :duration%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">  <%= f.label :location %></label>
+          <div class="col-lg-10">
+            <%= f.text_field :location%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">  <%= f.label :logged_by %></label>
+          <div class="col-lg-10">
+            <%= f.text_field :logged_by%>
+          </div>
+        </div>
 
 
+        <div class="form-group">
+          <label class="col-lg-2 control-label">  <%= f.label :comments %></label>
+          <div class="col-lg-10">
+            <%= f.text_area :comments%>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit %>
+          </div>
+        </div>
 
-        <%= f.label :behavior_id, 'Behavior' %>
-        <%= f.collection_select(:behavior_id, Behavior.all, :id, :name, :include_blank => "Other behavior") %>
-
-        <%= f.label :date %>
-        <%= f.select_date :date %>
-
-        <%= f.label :time %>
-        <%= f.time :time %>
-
-        <%= f.label :duration %>
-        <%= f.text_field :duration %>
-
-        <%= f.label :location %>
-        <%= f.text_field :location %>
-
-        <%= f.label :logged_by %>
-        <%= f.text_field :logged_by %>
-
-        <%= f.label :comments %>
-        <%= f.text_area :comments %>
-
-        <%= f.submit %>
-        <% end %>
+    </fieldset>
+  </form>
+  <% end %>
+</div>

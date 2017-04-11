@@ -1,6 +1,12 @@
-class BehaviorsController < ApplicationController
-
+class Admin::BehaviorsController < ApplicationController
   before_action :set_behavior, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin
+
+
+    def require_admin
+      render file: "/public/404" unless current_admin?
+    end
+
 
   def index
     @behaviors = Behavior.all
@@ -17,7 +23,7 @@ class BehaviorsController < ApplicationController
     @behavior = Behavior.new(behavior_params)
 
     if @behavior.save
-      redirect_to behaviors_path
+      redirect_to admin_behaviors_path
     else
       render :new
     end
@@ -28,7 +34,7 @@ class BehaviorsController < ApplicationController
 
   def update
     if @behavior.update(behavior_params)
-      redirect_to behaviors_path
+      redirect_to admin_behaviors_path
     else
       render :edit
     end
@@ -36,7 +42,7 @@ class BehaviorsController < ApplicationController
 
   def destroy
     @behavior.destroy
-    redirect_to behaviors_path
+    redirect_to admin_behaviors_path
   end
 
 

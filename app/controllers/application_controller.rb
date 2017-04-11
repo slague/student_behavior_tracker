@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+
   def current_user
     if session[:user_id]
       User.find(session[:user_id])
@@ -10,4 +11,9 @@ class ApplicationController < ActionController::Base
       User.new(username: "Guest")
     end
   end
+
+  def current_admin?
+    current_user && current_user.admin?
+  end
+
 end

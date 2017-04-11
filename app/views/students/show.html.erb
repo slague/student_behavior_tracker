@@ -1,22 +1,19 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-      <a class="navbar-brand"> <h3 class="text-info">Student Behavior Tracker</h3></a>
+    <a class="navbar-brand"> <h3 class="text-info">Student Behavior Tracker</h3></a>
       <ul class="nav navbar-nav navbar-right">
-
-              <h4 class="btn-group"><%= link_to "Return to #{@student.classroom.teacher}'s enitre class", classroom_path(@student.classroom), class: "btn btn-success" %></h4>
-              <h4 class="btn-group"><%= link_to "Return to all Classrooms", classrooms_path, class: "btn btn-success" %></h4>
-
-            </ul>
+        <h4 class="btn-group"><%= link_to "Return to #{@student.classroom.teacher}'s enitre class", classroom_path(@student.classroom), class: "btn btn-success" %></h4>
+        <h4 class="btn-group"><%= link_to "Return to all Classrooms", classrooms_path, class: "btn btn-success" %></h4>
+      </ul>
   </div>
 </nav><br><br>
 
-
-<h1>Name: <%= @student.name %></h1>
-<h4>Teacher: <%= @student.classroom.teacher %></h4><br>
-
+<h1>Student:  <%= @student.name %></h1>
+<h4>Teacher:  <%= @student.classroom.teacher %></h4><br>
 
 
-  <% @student.target_behavior_descriptions_hash.each  do |behavior, description| %>
+
+<% @student.target_behavior_descriptions_hash.each  do |behavior, description| %>
 <div class='col-md-4'>
   <div class="panel panel-info">
     <div class="panel-heading">
@@ -27,6 +24,13 @@
     </div>
   </div>
 </div>
-<% end %>
+<% end %><br>
 
-<h3>Record behavior <%= link_to "New observation", new_classroom_student_observation_path(@classroom, @student), class: "btn btn-warning" %></h3>
+<div class='col-md-7'>
+  <h3>Record behavior <%= link_to "New observation", new_classroom_student_observation_path(@classroom, @student), class: "btn btn-warning" %></h3>
+</div>
+
+
+<div class='col-md-7'>
+  <h3>Behavior Log:</h3>
+  </div>

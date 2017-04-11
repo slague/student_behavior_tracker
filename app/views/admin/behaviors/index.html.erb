@@ -9,19 +9,19 @@
 </nav><br><br>
 
 
-<h1>List of Behavior Keywords</h1>
+<h1>ADMIN: List of Behavior Keywords</h1>
 <ul>
 <% @behaviors.each do |behavior| %>
   <ul>
   <h3><%= behavior.keyword %><h3>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-          <h4 class="btn-group"><%= link_to "Edit Behavior", edit_behavior_path(behavior), class: "btn btn-warning" %></h4>
-          <h4 class="btn-group"><%= link_to "Delete Behavior", behavior_path(behavior), method: :delete, class: "btn btn-danger" %></h4>
+          <h4 class="btn-group"><%= link_to "Edit Behavior", edit_admin_behavior_path(behavior), class: "btn btn-warning" %></h4>
+          <h4 class="btn-group"><%= link_to "Delete Behavior", admin_behavior_path(behavior), method: :delete, class: "btn btn-danger" %></h4>
       </div>
     </nav>
 
 </ul>
 <% end %><br>
 
-<%= link_to "Add New Behavior", new_behavior_path, class: "btn btn-success" %>
+<%= link_to "Add New Behavior", new_admin_behavior_path, class: "btn btn-success" %>
